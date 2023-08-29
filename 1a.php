@@ -30,7 +30,7 @@ function timeInWords($h, $m){
         18 => "eighteen",
         19 => "nineteen",
         20 => "twenty"
-    ]
+    ];
         $menit = ($m > 30) ? (60 - $m) : $m;
     
         if ($menit == 0) {
@@ -55,33 +55,49 @@ function timeInWords($h, $m){
             }
         }
     
-        return $timeInWords;
+        return $hasil;
     }
-    
 
-
-
-$fptr = fopen(getenv("OUTPUT_PATH"), "w");
-$h = intval(trim(fgets(STDIN)));
-$m = intval(trim(fgets(STDIN)));
-$result = timeInWords($h, $m);
-fwrite($fptr, $result . "\n");
-fclose($fptr);
+// $fptr = fopen(getenv("OUTPUT_PATH"), "w");
+// $h = intval(trim(fgets(STDIN)));
+// $m = intval(trim(fgets(STDIN)));
+// $result = timeInWords($h, $m);
+// fwrite($fptr, $result . "\n");
+// fclose($fptr);
 
 ?>
-    <h1>Time To Word</h1>
-    <?php if (isset($_POST)) : ?>
+    <?php if (isset($_POST['hour']) && isset($_POST['minute'])) : ?>
         <?php
            $h = $_POST['hour'];
            $m = $_POST['minute'];
            $result = timeInWords($h, $m);
         ?>
     <?php endif; ?>
-    <form action="" method="post">
-        <input type="" placeholder="insert hours..." name="hour">
-        <input type="" placeholder="insert minutes..." name="minute">
-        <button type="submit">Submit!</button>
-    </form>
+<div class="container mt-5 mx-auto">
+    <div class="row align-center mt-5 p-5">
+        <div class="col-md-6 bg-dark rounded text-light mx-auto p-5">
+            <form action="" method="post">
+            <h1 class="text-center">Time To Word</h1>
+            <?php if(isset($result)) : ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong><?= $result; ?></strong><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endif; ?>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <input type="number" placeholder="insert hours..." name="hour" class="form-control" min="1" max="11">    
+                </div>
+                <div class="col-6">
+                    <input type="number" placeholder="insert minutes..." name="minute" class="form-control" min="0" max="59">
+                </div>
+            </div>
+            <div class="row float-end mt-5 me-1">
+                <button type="submit" class="btn btn-primary">Submit!</button>
+            </div>
+            </form>
+        </div>
+    </div>
+   </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>
