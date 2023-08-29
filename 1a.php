@@ -85,7 +85,7 @@ function timeInWords($h, $m){
             <?php endif; ?>
             <div class="row mt-5">
                 <div class="col-6">
-                    <input type="number" placeholder="insert hours..." name="hour" class="form-control" min="1" max="11">    
+                    <input type="number" placeholder="insert hours..." name="hour" class="form-control" min="0" max="11">    
                 </div>
                 <div class="col-6">
                     <input type="number" placeholder="insert minutes..." name="minute" class="form-control" min="0" max="59">
